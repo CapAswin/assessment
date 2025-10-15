@@ -1,39 +1,28 @@
 // outputNode.js
 
 import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Position } from 'reactflow';
+import BaseNode from './BaseNode';
 
 export const OutputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
-  const [outputType, setOutputType] = useState(data.outputType || 'Text');
+  const [outputType, setOutputType] = useState(data?.outputType || 'Text');
 
-  const handleNameChange = (e) => {
-    setCurrName(e.target.value);
-  };
+  const handleNameChange = (e) => setCurrName(e.target.value);
+  const handleTypeChange = (e) => setOutputType(e.target.value);
 
-  const handleTypeChange = (e) => {
-    setOutputType(e.target.value);
-  };
+  const inputs = [
+    { id: `${id}-value`, position: Position.Left },
+  ];
 
   return (
-    <div style={{ width: 200, height: 80, border: '1px solid black' }}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-value`}
-      />
-      <div>
-        <span>Output</span>
-      </div>
-      <div>
+    <BaseNode title="Output" inputs={inputs} style={{ width: 200, height: 'auto' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         <label>
           Name:
-          <input
-            type="text"
-            value={currName}
-            onChange={handleNameChange}
-          />
+          <input type="text" value={currName} onChange={handleNameChange} />
         </label>
+
         <label>
           Type:
           <select value={outputType} onChange={handleTypeChange}>
@@ -42,6 +31,7 @@ export const OutputNode = ({ id, data }) => {
           </select>
         </label>
       </div>
-    </div>
+    </BaseNode>
   );
-}
+};
+
