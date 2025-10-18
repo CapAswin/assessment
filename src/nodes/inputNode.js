@@ -21,7 +21,7 @@ export const InputNode = ({ id, data }) => {
   ];
 
   return (
-    <BaseNode title={null} outputs={outputs} containerStyle={{}}>
+    <BaseNode title={null} outputs={outputs} >
       <div className="space-y-3">
         <div className="text-lg font-medium">Input</div>
         <div className="space-y-3">

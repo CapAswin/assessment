@@ -30,6 +30,7 @@ const selector = (state) => ({
   onNodesChange: state.onNodesChange,
   onEdgesChange: state.onEdgesChange,
   onConnect: state.onConnect,
+  theme: state.theme,
 });
 
 export const PipelineUI = () => {
@@ -42,7 +43,8 @@ export const PipelineUI = () => {
     addNode,
     onNodesChange,
     onEdgesChange,
-    onConnect
+    onConnect,
+    theme
   } = useStore(selector, shallow);
 
   const getInitNodeData = (nodeID, type) => {
@@ -90,7 +92,7 @@ export const PipelineUI = () => {
 
   return (
     <>
-      <div ref={reactFlowWrapper} style={{ width: '100wv', height: '70vh' }}>
+      <div ref={reactFlowWrapper} className="w-full h-[70vh]">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -104,10 +106,26 @@ export const PipelineUI = () => {
           proOptions={proOptions}
           snapGrid={[gridSize, gridSize]}
           connectionLineType='smoothstep'
+          className={theme === 'dark' ? 'dark' : ''}
         >
-          <Background color="#aaa" gap={gridSize} />
-          <Controls />
-          <MiniMap />
+          <Background
+            color={theme === 'dark' ? '#64748b' : '#cbd5e1'}
+            gap={gridSize}
+          />
+          <Controls
+            className={theme === 'dark' ? 'dark' : ''}
+            style={{
+              backgroundColor: theme === 'dark' ? '#475569' : '#f8fafc',
+              border: `1px solid ${theme === 'dark' ? '#64748b' : '#e2e8f0'}`
+            }}
+          />
+          <MiniMap
+            className={theme === 'dark' ? 'dark' : ''}
+            style={{
+              backgroundColor: theme === 'dark' ? '#475569' : '#f8fafc',
+              border: `1px solid ${theme === 'dark' ? '#64748b' : '#e2e8f0'}`
+            }}
+          />
         </ReactFlow>
       </div>
     </>

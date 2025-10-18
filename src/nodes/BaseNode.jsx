@@ -6,7 +6,7 @@ export default function BaseNode({
   children,
   inputs = [],
   outputs = [],
-  containerStyle = {  border: '1px solid black' },
+  containerStyle = {  border: '1px solid #e5e7eb' },
   className = "",
 }) {
   const theme = useStore((state) => state.theme);

@@ -6,7 +6,7 @@ export const SubmitButton = () => {
     const theme = useStore((state) => state.theme);
 
     return (
-        <div className={`p-6 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
+        <div className={`p-6 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
             <div className="flex items-center justify-center">
                 <button
                     type="submit"
