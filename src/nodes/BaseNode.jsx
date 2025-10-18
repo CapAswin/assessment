@@ -1,28 +1,31 @@
 import { Handle, Position } from "reactflow";
+import { useStore } from "../store";
 
 export default function BaseNode({
   title,
   children,
   inputs = [],
   outputs = [],
-  containerStyle = { width: 200, height: 80, border: '1px solid black' },
+  containerStyle = {  border: '1px solid black' },
   className = "",
 }) {
-  const baseStyle = {
-    border: "1px solid #d1d5db", 
-    borderRadius: 12,
-    backgroundColor: "white",
-    padding: "12px",
-    minWidth: 220,
-    boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-  };
+  const theme = useStore((state) => state.theme);
 
-  const mergedStyle = { ...baseStyle, ...containerStyle };
+  const mergedStyle = { ...containerStyle };
 
   return (
-    <div style={mergedStyle} className={`relative text-sm ${className}`}>
+    <div
+      style={mergedStyle}
+      className={`relative text-sm border rounded-xl p-3 min-w-56 shadow-sm ${
+        theme === 'dark'
+          ? 'border-slate-600 bg-slate-800 text-slate-100'
+          : 'border-slate-300 bg-slate-50 text-slate-900'
+      } ${className}`}
+    >
       {title && (
-        <div className="font-semibold mb-2 text-gray-800 text-center">{title}</div>
+        <div className={`font-semibold mb-2 text-center ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>
+          {title}
+        </div>
       )}
 
       {inputs.map((input, idx) => (
@@ -32,7 +35,7 @@ export default function BaseNode({
           position={input.position || Position.Left}
           id={input.id}
           style={{
-            background: "#111",
+            background: theme === 'dark' ? '#ffffff' : '#111',
             width: 10,
             height: 10,
             borderRadius: "50%",
@@ -41,7 +44,7 @@ export default function BaseNode({
         />
       ))}
 
-      <div className="text-gray-700">{children}</div>
+      <div className={theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}>{children}</div>
 
       {outputs.map((output, idx) => (
         <Handle
@@ -50,7 +53,7 @@ export default function BaseNode({
           position={output.position || Position.Right}
           id={output.id}
           style={{
-            background: "#111",
+            background: theme === 'dark' ? '#ffffff' : '#111',
             width: 10,
             height: 10,
             borderRadius: "50%",

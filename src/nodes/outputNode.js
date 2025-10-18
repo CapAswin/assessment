@@ -14,22 +14,29 @@ export const OutputNode = ({ id, data }) => {
   const inputs = [
     { id: `${id}-value`, position: Position.Left },
   ];
-  const containerStyle = { width: 200, height: 80, border: '1px solid black' };
   return (
-    <BaseNode title="Output" inputs={inputs} containerStyle={containerStyle}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <label>
-          Name:
-          <input type="text" value={currName} onChange={handleNameChange} />
-        </label>
-
-        <label>
-          Type:
-          <select value={outputType} onChange={handleTypeChange}>
+    <BaseNode title="Output" inputs={inputs} >
+      <div className="space-y-3">
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-medium">Name:</label>
+          <input
+            type="text"
+            value={currName}
+            onChange={handleNameChange}
+            className="flex-1 px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-medium">Type:</label>
+          <select
+            value={outputType}
+            onChange={handleTypeChange}
+            className="px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          >
             <option value="Text">Text</option>
             <option value="File">Image</option>
           </select>
-        </label>
+        </div>
       </div>
     </BaseNode>
   );

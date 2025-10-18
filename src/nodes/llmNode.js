@@ -13,17 +13,13 @@ export const LLMNode = ({ id, data }) => {
     { id: `${id}-response`, position: Position.Right },
   ];
 
-  const containerStyle = { width: 200, height: 80, border: '1px solid black' };
+  const containerStyle = { width: 200, height: 80 };
 
   return (
     <BaseNode title={null} inputs={inputs} outputs={outputs} containerStyle={containerStyle}>
-      <div>
-        <div>
-          <span>LLM</span>
-        </div>
-        <div>
-          <span>This is a LLM.</span>
-        </div>
+      <div className="flex flex-col items-center justify-center h-full space-y-1">
+        <div className="text-lg font-medium">LLM</div>
+        <div className="text-xs text-center opacity-75">AI Language Model</div>
       </div>
     </BaseNode>
   );
