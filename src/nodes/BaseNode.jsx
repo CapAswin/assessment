@@ -1,43 +1,61 @@
-// BaseNode.jsx
-import { Handle } from "reactflow";
+import { Handle, Position } from "reactflow";
 
-// A small reusable container for node UIs. It renders optional title,
-// input handles (targets) and output handles (sources) and accepts a
-// `containerStyle` prop so callers can keep their existing inline styles.
 export default function BaseNode({
   title,
   children,
   inputs = [],
   outputs = [],
-  containerStyle = {},
-  className = undefined,
+  containerStyle = { width: 200, height: 80, border: '1px solid black' },
+  className = "",
 }) {
-  const baseStyle = { border: "1px solid black", padding: 8, borderRadius: 6, width: 220 };
+  const baseStyle = {
+    border: "1px solid #d1d5db", 
+    borderRadius: 12,
+    backgroundColor: "white",
+    padding: "12px",
+    minWidth: 220,
+    boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+  };
+
   const mergedStyle = { ...baseStyle, ...containerStyle };
 
   return (
-    <div style={mergedStyle} className={className}>
-      {title ? <div style={{ fontWeight: 600, marginBottom: 6 }}>{title}</div> : null}
+    <div style={mergedStyle} className={`relative text-sm ${className}`}>
+      {title && (
+        <div className="font-semibold mb-2 text-gray-800 text-center">{title}</div>
+      )}
 
-      {inputs.map((input) => (
+      {inputs.map((input, idx) => (
         <Handle
-          key={input.id}
+          key={input.id || idx}
           type="target"
-          position={input.position}
+          position={input.position || Position.Left}
           id={input.id}
-          style={input.style}
+          style={{
+            background: "#111",
+            width: 10,
+            height: 10,
+            borderRadius: "50%",
+            ...input.style,
+          }}
         />
       ))}
 
-      {children}
+      <div className="text-gray-700">{children}</div>
 
-      {outputs.map((output) => (
+      {outputs.map((output, idx) => (
         <Handle
-          key={output.id}
+          key={output.id || idx}
           type="source"
-          position={output.position}
+          position={output.position || Position.Right}
           id={output.id}
-          style={output.style}
+          style={{
+            background: "#111",
+            width: 10,
+            height: 10,
+            borderRadius: "50%",
+            ...output.style,
+          }}
         />
       ))}
     </div>

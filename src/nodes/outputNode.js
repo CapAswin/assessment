@@ -14,9 +14,9 @@ export const OutputNode = ({ id, data }) => {
   const inputs = [
     { id: `${id}-value`, position: Position.Left },
   ];
-
+  const containerStyle = { width: 200, height: 80, border: '1px solid black' };
   return (
-    <BaseNode title="Output" inputs={inputs} style={{ width: 200, height: 'auto' }}>
+    <BaseNode title="Output" inputs={inputs} containerStyle={containerStyle}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         <label>
           Name:
