@@ -12,7 +12,7 @@ export const TextNode = ({ id, data }) => {
   const outputs = [
     { id: `${id}-output`, position: Position.Right },
   ];
-
+  const width = Math.max(100, currText.length * 7.2);
 
   return (
     <BaseNode title={null} outputs={outputs} >
@@ -21,6 +21,7 @@ export const TextNode = ({ id, data }) => {
         <div className="flex gap-2">
           <label className="text-sm font-medium">Content:</label>
           <input
+            style={{ width }}
             type="text"
             value={currText}
             onChange={handleTextChange}

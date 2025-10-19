@@ -8,7 +8,7 @@ export const PipelineToolbar = () => {
 
     return (
         <div className={`p-2.5 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-100'}`}>
-            <div className="flex items-center mb-5">
+            <div className="flex items-center ">
                 <div className="flex flex-wrap gap-2.5 flex-1">
                     <DraggableNode type='customInput' label='Input' />
                     <DraggableNode type='llm' label='LLM' />
