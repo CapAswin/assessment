@@ -14,6 +14,11 @@ export const PipelineToolbar = () => {
                     <DraggableNode type='llm' label='LLM' />
                     <DraggableNode type='customOutput' label='Output' />
                     <DraggableNode type='text' label='Text' />
+                    <DraggableNode type='number' label='Number' />
+                    <DraggableNode type='colorPicker' label='Color Picker' />
+                    <DraggableNode type='slider' label='Slider' />
+                    <DraggableNode type='info' label='Info' />
+                    <DraggableNode type='toggle' label='Toggle' />
                 </div>
                 <button
                     onClick={toggleTheme}

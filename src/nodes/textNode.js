@@ -12,7 +12,7 @@ export const TextNode = ({ id, data }) => {
   const outputs = [
     { id: `${id}-output`, position: Position.Right },
   ];
-  const width = Math.max(100, currText.length * 7.2);
+  const width = Math.max(100, currText.length * 7.4);
 
   return (
     <BaseNode title={null} outputs={outputs} >
